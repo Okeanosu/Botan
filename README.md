@@ -1,0 +1,2 @@
+# botanstore
+Static Web hosting
