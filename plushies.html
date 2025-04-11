@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plushies - Botan Store</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #4ecdc4;
+            --accent: #ffe66d;
+            --dark: #2d3436;
+            --light: #f7f7f7;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            font-size: 32px;
+            margin-right: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+             url("assets/img/Botan.jpg") center/cover no-repeat;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeIn 2s;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            animation: fadeIn 2.5s;
+        }
+        
+        .btn:hover {
+            background-color: #3ab7af;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Plushie Categories */
+        .categories {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+            font-size: 2.5rem;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .category-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .category-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .category-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .category-card:hover .category-img img {
+            transform: scale(1.1);
+        }
+        
+        .category-content {
+            padding: 20px;
+        }
+        
+        .category-content h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .category-content p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        /* Featured Plushies */
+        .featured {
+            padding: 60px 0;
+            background-color: var(--light);
+        }
+        
+        .plushies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .plushie-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .plushie-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .plushie-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .plushie-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .plushie-card:hover .plushie-img img {
+            transform: scale(1.1);
+        }
+        
+        .plushie-content {
+            padding: 20px;
+        }
+        
+        .plushie-content h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .plushie-content .price {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .plushie-content p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        /* Care Instructions */
+        .care {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .care-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .care-content h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .care-content ul {
+            margin-left: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .care-content li {
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .social-links {
+            display: flex;
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .social-links li {
+            margin: 0 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            margin-top: 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="container">
+                <nav>
+                  <a href="#" class="logo">
+                    <span class="logo-icon">
+                      <img src="assets/icon/botan.ico" alt="Botan Store Logo" />
+                    </span>
+                    <span class="logo-text">Botan Store</span>
+                  </a>
+                <ul class="nav-links">
+                    <li><a href="botan-store-homepage.html">Home</a></li>
+                    <li><a href="botan-store-homepage.html#features">Machines</a></li>
+                    <li><a href="plushies.html">Plushies</a></li>
+                    <li><a href="botan-store-homepage.html#visit">Visit Us</a></li>
+                </ul>
+                <button class="mobile-menu-btn">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Our Plushie Collection</h1>
+            <p>Discover our adorable plushies - perfect for cuddling or collecting!</p>
+        </div>
+    </section>
+
+    <!-- Plushie Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Plushie Categories</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="assets/img/17.jpg" alt="Anime">
+                    </div>
+                    <div class="category-content">
+                        <h3>Anime Characters</h3>
+                        <p>Featuring your favorite characters from popular anime series.</p>
+                        <a href="#" class="btn">View Collection</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="assets/img/15.jpg" alt="Animal Plushies">
+                    </div>
+                    <div class="category-content">
+                        <h3>Cute Animals</h3>
+                        <p>Adorable animal plushies that are perfect for animal lovers of all ages.</p>
+                        <a href="#" class="btn">View Collection</a>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="assets/img/18.jpg" alt="Limited Edition">
+                    </div>
+                    <div class="category-content">
+                        <h3>Limited Edition</h3>
+                        <p>Rare and exclusive plushies that are only available for a limited time.</p>
+                        <a href="#" class="btn">View Collection</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Plushies -->
+    <section class="featured">
+        <div class="container">
+            <h2 class="section-title">Featured Plushies</h2>
+            <div class="plushies-grid">
+                <div class="plushie-card">
+                    <div class="plushie-img">
+                        <img src="assets/img/cocacola.png" alt="Plushie 1">
+                    </div>
+                    <div class="plushie-content">
+                        <h3>Cocacola </h3>
+                        <div class="price">$XXX</div>
+                        <p>Cute Cocacola monstah</p>
+                    </div>
+                </div>
+                <div class="plushie-card">
+                    <div class="plushie-img">
+                        <img src="assets/img/macaron.png" alt="Plushie 2">
+                    </div>
+                    <div class="plushie-content">
+                        <h3>Macaron blind box</h3>
+                        <div class="price">$XXX</div>
+                        <p>Adorable macaron plushie for picnic time and perfect for bedtime cuddles.</p>
+ 
+                    </div>
+                </div>
+                <div class="plushie-card">
+                    <div class="plushie-img">
+                        <img src="assets/img/ocean.png" alt="Plushie 3">
+                    </div>
+                    <div class="plushie-content">
+                        <h3>Baby Three Ocean</h3>
+                        <div class="price">$XXX</div>
+                        <p>Swims with the sea and cute baby three ocean.</p>
+ 
+                    </div>
+                </div>
+                <div class="plushie-card">
+                    <div class="plushie-img">
+                        <img src="assets/img/wukong.jpg" alt="Plushie 4">
+                    </div>
+                    <div class="plushie-content">
+                        <h3>Wukong Blind box</h3>
+                        <div class="price">$XXX</div>
+                        <p>The legendary Sun Wukong has come to play.</p>
+ 
+                    </div>
+                </div>
+                <div class="plushie-card">
+                    <div class="plushie-img">
+                        <img src="assets/img/liliazoo.png" alt="Plushie 5">
+                    </div>
+                    <div class="plushie-content">
+                        <h3>Lilia Zoo collecttion</h3>
+                        <div class="price">$XXX</div>
+                        <p>Lilia Zoo with a secret 600% size plushie.</p>
+ 
+                    </div>
+                </div>
+                <div class="plushie-card">
+                    <div class="plushie-img">
+                        <img src="assets/img/fortunecat.png" alt="Plushie 6">
+                    </div>
+                    <div class="plushie-content">
+                        <h3>Baby Three Fortune Cat</h3>
+                        <div class="price">$XXX</div>
+                        <p>Soft and cuddly cat plushie with realistic features.</p>
+ 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Care Instructions -->
+    <section class="care">
+        <div class="container">
+            <h2 class="section-title">Plushie Care Instructions</h2>
+            <div class="care-content">
+                <h3>How to Keep Your Plushies Looking Great</h3>
+                <ul>
+                    <li><strong>Gentle Washing:</strong> Most of our plushies are machine washable on a gentle cycle. Use cold water and mild detergent.</li>
+                    <li><strong>Air Dry:</strong> Let your plushies air dry naturally. Avoid using a dryer as it can damage the fabric and stuffing.</li>
+                    <li><strong>Spot Cleaning:</strong> For small stains, spot clean with a damp cloth and mild soap.</li>
+                    <li><strong>Brushing:</strong> For plushies with fur, gently brush with a soft brush to keep them looking fluffy.</li>
+                    <li><strong>Storage:</strong> Store in a cool, dry place away from direct sunlight to prevent fading.</li>
+                </ul>
+                
+                <h3>Special Care for Limited Edition Plushies</h3>
+                <ul>
+                    <li>Limited edition plushies may require special care. Check the tag for specific instructions.</li>
+                    <li>Consider displaying these in a glass case to protect them from dust and damage.</li>
+                    <li>Handle with clean hands to prevent oils and dirt from transferring to the fabric.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+          <div class="footer-content">
+            <a href="#" class="logo">
+              <span class="logo-icon">
+                  <img src="assets/icon/botan.ico" alt="Botan Store Logo" />
+              </span>
+              <span class="logo-text">Botan Store</span>
+            </a>
+            <ul class="social-links">
+              <li><a href="#">🐻</a></li>
+              <li><a href="#">📸</a></li>
+              <li><a href="#">🐦</a></li>
+              <li><a href="#">▶️</a></li>
+            </ul>
+            <p class="copyright">&copy; Botan Store</p>
+          </div>
+        </div>
+      </footer>
+
+    <script>
+        // Simple JavaScript for basic interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Mobile menu toggle functionality
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if(mobileMenuBtn && navLinks) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
